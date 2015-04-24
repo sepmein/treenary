@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "name": "treenary",
+      "scripts": "index.js",
+      "env": {
+        "NODE_ENV": "production"
+      },
+      "cwd": "/root/app"
+    }
+  ]
+}
