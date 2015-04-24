@@ -1,0 +1,19 @@
+{
+  "name": "treenary",
+  "version": "0.0.0",
+  "description": "best dictionary ever",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "dictionary"
+  ],
+  "author": "Spencer",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "^0.4.3",
+    "mongodb": "^2.0.27",
+    "porter-stemmer": "^0.9.1"
+  }
+}
