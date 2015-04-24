@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "crawler": "^0.4.3",
+    "lodash": "^3.7.0",
     "mongodb": "^2.0.27",
     "porter-stemmer": "^0.9.1"
   }
