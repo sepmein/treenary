@@ -18,6 +18,3 @@ COPY . .
 
 # npm install dependencies
 RUN ["npm","install"]
-
-# what's the difference between ENTRYPOINT & CMD?
-RUN ["pm2","start","index.js","--name","treenary"]
