@@ -2,7 +2,12 @@ var url = require('url');
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
 // Connection URL
-var dbConnectionUrl = 'mongodb://localhost:27017/treenary';
+var mongoUrl;
+if(process.env.NODE_ENV === 'production') {
+    mongoUrl ='mongodb://' + process.env.DB_PORT_27017_TCP_ADDR + '/treenary';
+} else {
+    mongoUrl = 'mongodb://localhost/treenary';
+}
 // Use connect method to connect to the Server
 var Crawler = require("crawler");
 //var url = require('url');
@@ -10,7 +15,7 @@ var wordAnalysis = require('./wordAnalysis');
 var dbModel = require('./db');
 var startClient = require('./client');
 
-MongoClient.connect(dbConnectionUrl, function (err, db) {
+MongoClient.connect(mongoUrl, function (err, db) {
     assert.equal(null, err);
     console.log("Connected correctly to server");
 
@@ -91,8 +96,8 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
     });
 
 // Queue just one URL, with default callback
-//    c.queue('http://yahoo.com');
-    //c.queue('http://harvard.edu');
+    c.queue('http://yahoo.com');
+    c.queue('http://harvard.edu');
     c.queue('http://www.nasa.gov');
     c.queue('http://nature.com')
 }
