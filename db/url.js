@@ -14,14 +14,15 @@ var url = {};
  * */
 url.checker = function (db, url, callback) {
     var collection = db.collection('url');
-    collection.find(
+    collection.findOne(
         {
             url: url
-        }, function (err, results) {
-            if (!err && results) {
-                callback(true);
-            } else {
+        }, function (err, result) {
+            console.log(result);
+            if (!result) {
                 callback(false);
+            } else {
+                callback(true);
             }
         }
     );

@@ -61,10 +61,12 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
                         return;
                     }
 
-                    //console.log(toQueueUrl);
+                    //如果url并未在数据库中出现
+                    //将其加入队列
+                    //并将其存入数据库
                     urlChecker(db, toQueueUrl, function (result) {
                         //console.log(result);
-                        if (result === true) {
+                        if (result === false) {
                             c.queue(toQueueUrl);
                             urlAdder(db, toQueueUrl);
                         }
@@ -97,7 +99,7 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
 
 // Queue just one URL, with default callback
     c.queue('http://yahoo.com');
-    c.queue('http://harvard.edu');
-    c.queue('http://www.nasa.gov');
-    c.queue('http://nature.com')
+    //c.queue('http://harvard.edu');
+    //c.queue('http://www.nasa.gov');
+    //c.queue('http://nature.com')
 }
