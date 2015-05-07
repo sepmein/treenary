@@ -10,7 +10,6 @@ if(process.env.NODE_ENV === 'production') {
 }
 // Use connect method to connect to the Server
 var Crawler = require("crawler");
-//var url = require('url');
 var wordAnalysis = require('./wordAnalysis');
 var dbModel = require('./db');
 var startClient = require('./client');
@@ -61,6 +60,14 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
                         return;
                     }
 
+                    /*
+                    * ../../../../../us/en/yahoo/terms/index.htm
+                    * javascript:void(0)
+                    *
+                    * 注意这种情况
+                    * */
+                    console.log(toQueueUrl);
+
                     //如果url并未在数据库中出现
                     //将其加入队列
                     //并将其存入数据库
@@ -97,8 +104,8 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
     });
 
 // Queue just one URL, with default callback
-//    c.queue('http://yahoo.com');
-    //c.queue('http://harvard.edu');
-    //c.queue('http://www.nasa.gov');
+    c.queue('http://yahoo.com');
+    c.queue('http://harvard.edu');
+    c.queue('http://www.nasa.gov');
     c.queue('http://nature.com')
 }
