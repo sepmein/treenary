@@ -107,5 +107,9 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
     c.queue('http://yahoo.com');
     c.queue('http://harvard.edu');
     c.queue('http://www.nasa.gov');
-    c.queue('http://nature.com')
+    c.queue('http://nature.com');
+    c.queue('http://nodejs.org');
+    c.queue('https://www.quora.com/');
+    c.queue('http://global.bing.com/news');
+    c.queue('http://ted.com');
 }
