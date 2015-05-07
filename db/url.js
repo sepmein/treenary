@@ -18,7 +18,7 @@ url.checker = function (db, url, callback) {
         {
             url: url
         }, function (err, result) {
-            console.log(result);
+            //console.log(result);
             if (!result) {
                 callback(false);
             } else {
