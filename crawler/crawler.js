@@ -11,28 +11,30 @@ if (process.env.NODE_ENV === 'production') {
 // Use connect method to connect to the Server
 var Crawler = require("crawler");
 var wordAnalysis = require('./analysis/wordAnalysis');
-var dbModel = require('./db');
+var dbCtrl = require('./db');
 var startClient = require('./../server/server');
 
-MongoClient.connect(mongoUrl, function (err, db) {
+MongoClient.connect(mongoUrl, function (err, connection) {
   assert.equal(null, err);
   console.log("Connected correctly to server");
 
-  startCrawler(dbModel.updater, db, dbModel.url.checker, dbModel.url.adder);
+  startCrawler(dbCtrl.updater, connection, dbCtrl.url.checker, dbCtrl.url.adder, dbCtrl.controller.starter);
 
   //startClient();
 
 });
 
-function startCrawler(updater, db, urlChecker, urlAdder) {
+function startCrawler(updater, connection, urlChecker, urlAdder, starter) {
 
-  var c = new Crawler({
+  var crawlerInstance = new Crawler({
     maxConnections: 10,
     // This will be called for each crawled page
     callback: function (error, result, $) {
+      //request success add request url to database
+      urlAdder(connection, result.uri);
+
       // $ is Cheerio by default
       //a lean implementation of core jQuery designed specifically for the server
-
       if (error) {
         console.error(error);
       } else if (result.statusCode > 300 || result.statusCode < 200) {
@@ -71,10 +73,9 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
           //如果url并未在数据库中出现
           //将其加入队列
           //并将其存入数据库
-          urlChecker(db, toQueueUrl, function (result) {
+          urlChecker(connection, toQueueUrl, function (result) {
             if (result === false) {
-              c.queue(toQueueUrl);
-              urlAdder(db, toQueueUrl);
+              crawlerInstance.queue(toQueueUrl);
             }
           });
         });
@@ -83,7 +84,7 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
           var list = wordAnalysis($(element).text());
           list.forEach(function (element) {
             if (element) {
-              updater(db, element);
+              updater(connection, element);
             }
           });
         });
@@ -91,25 +92,18 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
     },
     jQuery: true,
     //skipDuplicates: true,
-    forceUTF8: true,
-    onDrain: function () {
-      console.log('-------------');
-      console.log('drained');
-      console.log('-------------');
-      db.close();
-      console.log('-------------');
-      console.log('db.close()');
-      console.log('-------------');
-    }
+    forceUTF8: true
+    //,
+    //onDrain: function () {
+    //  console.log('-------------');
+    //  console.log('drained');
+    //  console.log('-------------');
+    //  connection.close();
+    //  console.log('-------------');
+    //  console.log('db.close()');
+    //  console.log('-------------');
+    //}
   });
 
-// Queue just one URL, with default callback
-  c.queue('http://yahoo.com');
-  c.queue('http://harvard.edu');
-  c.queue('http://www.nasa.gov');
-  c.queue('http://nature.com');
-  c.queue('http://nodejs.org');
-  c.queue('https://www.quora.com/');
-  c.queue('http://global.bing.com/news');
-  c.queue('http://ted.com');
+  starter(connection, crawlerInstance);
 }

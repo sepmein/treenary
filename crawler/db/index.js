@@ -10,4 +10,5 @@
 var db = {};
 db.updater = require('./updater');
 db.url = require('./url');
+db.controller = require('./controller');
 module.exports = db;
