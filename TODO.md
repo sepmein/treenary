@@ -11,5 +11,6 @@ TODO:
 5. Record both the original word and the stem of each word.
 6. Provide an iOS app of Treenary.
 7. Memory Consumption will continuously rise up. Solve this.
-8. 程序中断后，Crawler应该能从上次中断的地方继续。
-9. 需要继续加强url过滤算法，现阶段较多无法访问的url。
+8. 锟斤拷锟斤拷锟叫断猴拷Crawler应锟斤拷锟杰达拷锟较达拷锟叫断的地凤拷锟斤拷锟斤拷锟斤拷
+9. 锟斤拷要锟斤拷锟斤拷锟斤拷强url锟斤拷锟斤拷锟姐法锟斤拷锟街阶段较讹拷锟睫凤拷锟斤拷锟绞碉拷url锟斤拷
+10. separate web application apart

@@ -1,5 +1,5 @@
 # grab the latest node image
-FROM node:onbuild
+FROM node:latest
 
 # maintained by
 MAINTAINER sepmein <sepmein@gmail.com>
@@ -8,7 +8,7 @@ MAINTAINER sepmein <sepmein@gmail.com>
 RUN npm install -g bower
 
 # define work directory
-WORKDIR /root/app
+WORKDIR /usr/src/app
 
 # Copy the current files into container
 # ADD cmd could perform the same function
