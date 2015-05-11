@@ -27,7 +27,7 @@ MongoClient.connect(mongoUrl, function (err, db) {
 function startCrawler(updater, db, urlChecker, urlAdder) {
 
     var c = new Crawler({
-        maxConnections: 10,
+        maxConnections: 100,
         // This will be called for each crawled page
         callback: function (error, result, $) {
             // $ is Cheerio by default
@@ -104,12 +104,14 @@ function startCrawler(updater, db, urlChecker, urlAdder) {
     });
 
 // Queue just one URL, with default callback
-    c.queue('http://yahoo.com');
-    c.queue('http://harvard.edu');
-    c.queue('http://www.nasa.gov');
-    c.queue('http://nature.com');
-    c.queue('http://nodejs.org');
-    c.queue('https://www.quora.com/');
-    c.queue('http://global.bing.com/news');
-    c.queue('http://ted.com');
+    // c.queue('http://yahoo.com');
+    // c.queue('http://harvard.edu');
+    // c.queue('http://www.nasa.gov');
+    // c.queue('http://nature.com');
+    // c.queue('http://nodejs.org');
+    // c.queue('https://www.quora.com/');
+    // c.queue('http://global.bing.com/news');
+    // c.queue('http://ted.com');
+    // c.queue('http://abcnews.go.com/US/things-morning/story?id=30895158');
+    c.queue('http://mongoosejs.com')
 }
