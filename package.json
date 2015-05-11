@@ -2,17 +2,23 @@
   "name": "treenary",
   "version": "0.0.0",
   "description": "best dictionary ever",
+  "author": "Spencer",
   "main": "index.js",
+  "license": "ISC",
+  "private": true,
+  "engines": {
+    "node": ">=0.12.0"
+  },
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "start": "NODE_ENV=production node crawler/crawler.js"
   },
   "keywords": [
     "dictionary"
   ],
-  "author": "Spencer",
-  "license": "ISC",
   "dependencies": {
     "crawler": "^0.4.3",
+    "koa": "^0.20.0",
     "lodash": "^3.7.0",
     "mongodb": "^2.0.27",
     "porter-stemmer": "^0.9.1"

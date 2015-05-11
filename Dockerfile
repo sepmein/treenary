@@ -4,11 +4,14 @@ FROM node:latest
 # maintained by
 MAINTAINER sepmein <sepmein@gmail.com>
 
+# set env variable to production
+ENV NODE_ENV production
+
 # install pm2 first
-RUN npm install -g pm2
+# RUN npm install -g pm2
 
 # define work directory
-WORKDIR /root/app
+WORKDIR /usr/src/app
 
 # Copy the current files into container
 # ADD cmd could perform the same function
@@ -17,4 +20,7 @@ WORKDIR /root/app
 COPY . .
 
 # npm install dependencies
-RUN ["npm","install"]
+RUN npm install
+
+# set default command
+
