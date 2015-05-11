@@ -1,5 +1,5 @@
 # grab the latest node image
-FROM node:latest
+FROM node:onbuild
 
 # maintained by
 MAINTAINER sepmein <sepmein@gmail.com>
