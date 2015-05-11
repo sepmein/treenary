@@ -5,7 +5,7 @@ FROM node:onbuild
 MAINTAINER sepmein <sepmein@gmail.com>
 
 # install pm2 first
-RUN npm install -g pm2
+RUN npm install -g bower
 
 # define work directory
 WORKDIR /root/app
@@ -18,3 +18,4 @@ COPY . .
 
 # npm install dependencies
 RUN ["npm","install"]
+RUN ["bower","install"]
