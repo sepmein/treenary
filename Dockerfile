@@ -5,7 +5,7 @@ FROM node:latest
 MAINTAINER sepmein <sepmein@gmail.com>
 
 # install pm2 first
-RUN npm install -g bower
+# RUN npm install -g pm2
 
 # define work directory
 WORKDIR /usr/src/app
@@ -18,4 +18,3 @@ COPY . .
 
 # npm install dependencies
 RUN ["npm","install"]
-RUN ["bower","install"]
