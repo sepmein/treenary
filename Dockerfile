@@ -4,6 +4,9 @@ FROM node:latest
 # maintained by
 MAINTAINER sepmein <sepmein@gmail.com>
 
+# set env variable to production
+ENV NODE_ENV production
+
 # install pm2 first
 # RUN npm install -g pm2
 
@@ -17,4 +20,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # npm install dependencies
-RUN ["npm","install"]
+RUN npm install
+
+# set default command
+
