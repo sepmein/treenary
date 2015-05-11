@@ -12,7 +12,6 @@ if (process.env.NODE_ENV === 'production') {
 var Crawler = require("crawler");
 var wordAnalysis = require('./analysis/wordAnalysis');
 var dbCtrl = require('./db');
-var startClient = require('./../server/server');
 
 MongoClient.connect(mongoUrl, function (err, connection) {
   assert.equal(null, err);
@@ -27,7 +26,7 @@ MongoClient.connect(mongoUrl, function (err, connection) {
 function startCrawler(updater, connection, urlChecker, urlAdder, starter) {
 
   var crawlerInstance = new Crawler({
-    maxConnections: 10,
+    maxConnections: 1,
     // This will be called for each crawled page
     callback: function (error, result, $) {
       //request success add request url to database
