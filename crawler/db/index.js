@@ -3,12 +3,12 @@
  */
 
 /*
-* Provide the entrance of each db functions
-* */
+ * Provide the entrance of each db functions
+ * */
 
 
 var db = {};
-db.updater = require('./updater');
+db.wordUpserter = require('./wordUpserter');
 db.url = require('./url');
 db.controller = require('./controller');
 module.exports = db;

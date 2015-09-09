@@ -52,7 +52,8 @@ function matchingESC(phrase) {
 function advanceTrimer(phrase) {
     var firstChar = phrase[0],
         lastChar = phrase[phrase.length - 1];
-    if ((phrase[0] < "a" || phrase[0] > "Z") || (lastChar < "a"))
+    if ((phrase[0] < "a" || phrase[0] > "Z") || (lastChar < "a")) {
 
         return trimmed;
+    }
 }
